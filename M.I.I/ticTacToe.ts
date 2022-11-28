@@ -23,7 +23,7 @@ type Board = (Tile)[][]
 // demande de savoir que le tictactoe fonctionne avec des cases indexer de 0 a 2
 export const play = (model: Model, row: number , column: number): Model => {
     if (row > 2 || column > 2 || row < 0 || column < 0){
-        throw new Error('invalid column or row.....')
+        // ??????
     }
 
     model.board[row][column] = model.currentTurn

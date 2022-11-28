@@ -5,33 +5,56 @@
  * 
  */
 
-type ComponentProps = {
-    overflow: "ellipsis" | "expandable",
+type TextAreaProps2 = {
+    overflow?: "ellipsis" | "expandable",
     numberOfLines? : number, 
     maxHeight?: number,
-    labels?: {showall: string, showLess: string}
 }
+
 
 
 /**
  * interface cleaner + explicit + no optional field that arent really optional
- * 
- * Dont need to know what the ellipsis need or the expandable
+ * Limiter le nombre de question / le nombre de branche a gerer. / demande plus de tests 
+  Dont need to know what the ellipsis need or the expandable
  *  */ 
 
-type ComponentProps2 = {
-    overflow: Ellipsis | Expandable 
+type TextAreaProps = {
+    overflow: Ellipsis | Expandable | FullText
 }
 
-
 type Ellipsis = {
+    type : 'ellipsis',
     numberOfLines: number 
 }
 
 type Expandable = {
+    type : 'expandable',
     maxHeight: number
-    labels: {showall: string, showLess: string}
 }
 
+type FullText = {
+    type : 'fullText',
+}
 
+const Ellipsis = (numberOfLines: number): Ellipsis => ({
+    type: 'ellipsis',
+    numberOfLines
+})
+
+const Expandable = (maxHeight: number): Expandable => ({
+    type : 'expandable',
+    maxHeight
+})
+
+/// ------------------------------------ //
+
+// client
+const props1 : TextAreaProps = {
+    overflow: Ellipsis(8)
+}
+
+const props2: TextAreaProps = {
+    overflow: Expandable(500)
+}
 
