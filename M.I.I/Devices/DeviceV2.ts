@@ -46,11 +46,16 @@ type StandBy3 = {type: 'standBy' }
 type Control3 = Heating3 | Cooling3 | StandBy3;
 
 
+type HeatingDevice2 = {type:'furnace', device: Furnace} | {type: 'heatPump'}
+type Heating4 = {type: 'heating', stage1: HeatingDevice2, state2: Optional<HeatingDevice2>}
+type Control4 = Heating4 | Cooling3 | StandBy3;
+
+
 /// PART 3 : Cannot stop while furnace is in startState
 
-// en classe naive solution
-        class NaiveFurnace4 {
-            private readonly  isOn: boolean;
+// en classe naive solution: Se qui arrive ici est qu'on essaye de reprensenter 3 etats dans 1 classe/type
+    class NaiveFurnace4 {
+            private readonly isOn: boolean;
             private readonly isStarting: boolean;
 
             private constructor(isOn: boolean, isStarting: boolean){
@@ -69,7 +74,7 @@ type Control3 = Heating3 | Cooling3 | StandBy3;
                 }
                 return new NaiveFurnace4(false, false)
             }
-        }
+    }
 
 
 // sln see Furnace.ts
@@ -80,3 +85,8 @@ const functionToStopFurncae = (aFurnace: Furnace): Furnace => {
     }
     return aFurnace
 }
+
+
+
+
+

@@ -23,18 +23,21 @@ export const StandByFurncace = (): StandByFurnace => {
     }
 }
 
-export const HeatingFurnace = (): HeatingFurnace => {
+const HeatingFurnace = (): HeatingFurnace => {
     return {
         state: FurnaceStage.Heating,
         turnOff: () => StandByFurncace()
     }
 }
 
-export const StartingFurnace = (): StartingFurnace => {
+const StartingFurnace = (): StartingFurnace => {
     return {
         state: FurnaceStage.Starting,
     }
 }
+
+
+
 
 export const isHeating = (furnace: Furnace): furnace is HeatingFurnace=> {
     return furnace.state === FurnaceStage.Heating
@@ -49,3 +52,18 @@ export const isStandBy = (furnace: Furnace): furnace is StandByFurnace => {
 }
 
 export type Furnace = StartingFurnace | HeatingFurnace | StandByFurnace
+
+
+
+
+
+const functionThatStartTheFurnace = (furnace: Furnace): Furnace => {
+    switch (furnace.state){
+        case FurnaceStage.StandBy:
+              return furnace.turnOn()
+        default: 
+              return furnace
+    }
+ }
+
+ 
