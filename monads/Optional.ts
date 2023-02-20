@@ -5,8 +5,10 @@
      * Apply a function to transform the value when the result is a success
      */
     map<C>(f: (t: T) => C): Optional<C>;
-  
+      
     andThen<C>(f: (t: T) => Optional<C>): Optional<C>;
+    
+   
     /**
      * Given a failure, return a fallback value.
      */
@@ -27,6 +29,7 @@
       this.tag = 'Just';
       this.value = value;
     }
+
     andThen<C>(f: (t: T) => Optional<C>): Optional<C> {
       return f(this.value);
     }
@@ -34,6 +37,8 @@
     map<C>(f: (t: T) => C): Optional<C> {
       return just(f(this.value));
     }
+
+
   
     withDefault<C>(_fallback: C): T | C {
       return this.value;
@@ -54,7 +59,7 @@
   
     map<C>(_f: (t: T) => C): Optional<C> {
       return none();
-    }
+    }   
   
     withDefault<C>(fallback: C): C | T{
       return fallback;

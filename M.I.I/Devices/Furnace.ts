@@ -51,6 +51,8 @@ export const isStandBy = (furnace: Furnace): furnace is StandByFurnace => {
     return furnace.state === FurnaceStage.StandBy
 }
 
+
+
 export type Furnace = StartingFurnace | HeatingFurnace | StandByFurnace
 
 
@@ -67,3 +69,5 @@ const functionThatStartTheFurnace = (furnace: Furnace): Furnace => {
  }
 
  
+
+
